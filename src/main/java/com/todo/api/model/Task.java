@@ -1,11 +1,23 @@
 package com.todo.api.model;
 
+import jakarta.persistence.*;
+
+
+@Entity
 public class Task {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String  description;
+
+    @Column(nullable = false)
+    private String description;
     private boolean completed;
 
-    public Task(long id, String description, boolean completed) {
+    public Task() {
+    }
+
+    public Task(long id, String description) {
         this.id = id;
         this.description = description;
         this.completed = false;
@@ -15,7 +27,7 @@ public class Task {
         return completed;
     }
 
-    public void setCompleted(boolean completed) {
+    public void     setCompleted(boolean completed) {
         this.completed = completed;
     }
 
