@@ -1,29 +1,13 @@
-package com.todo.api.model;
+package com.todo.api.dto;
 
-import jakarta.persistence.*;
+public class TaskDTO {
 
-
-@Entity
-public class Task {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
-
-    @Column(nullable = false)
-    private String title;
     private String description;
     private String status;
+    private String title;
 
-    public Task() {
-    }
-
-    public Task(long id, String description, String title) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.status = "Pending";
+    public TaskDTO() {
     }
 
     public String getStatus() {

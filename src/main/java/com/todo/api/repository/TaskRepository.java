@@ -1,5 +1,6 @@
 package com.todo.api.repository;
 
+import com.todo.api.dto.TaskDTO;
 import com.todo.api.model.Task;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
