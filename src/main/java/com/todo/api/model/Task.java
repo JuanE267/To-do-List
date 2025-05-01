@@ -2,6 +2,11 @@ package com.todo.api.model;
 
 import com.todo.api.enums.TaskStatus;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 
 @Entity
@@ -13,11 +18,14 @@ public class Task {
 
 
     @Column(nullable = false)
+    @NotBlank(message = "El título no puede estar vacío")
     private String title;
     private String description;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status = TaskStatus.PENDING;
+
+    private String date;
 
     public Task() {
     }
@@ -26,6 +34,7 @@ public class Task {
         this.id = id;
         this.title = title;
         this.description = description;
+        dateSetter();
     }
 
     public TaskStatus getStatus() {
@@ -34,6 +43,14 @@ public class Task {
 
     public void setStatus(TaskStatus status) {
         this.status = status;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public String getDescription() {
@@ -46,6 +63,8 @@ public class Task {
 
     public String getTitle() { return title; }
 
+
+
     public void setTitle(String title) { this.title = title; }
 
     public long getId() {
@@ -54,5 +73,12 @@ public class Task {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    @PrePersist
+    private void dateSetter(){
+        LocalDateTime createdAt = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy k:m");
+        this.date = createdAt.format(formatter);
     }
 }

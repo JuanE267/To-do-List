@@ -3,6 +3,7 @@ package com.todo.api.controller;
 import com.todo.api.dto.TaskDTO;
 import com.todo.api.model.Task;
 import com.todo.api.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,7 +33,7 @@ public class TaskController {
     }
 
     @PostMapping
-    public Task createTask(@RequestBody TaskDTO task){
+    public Task createTask(@RequestBody @Valid TaskDTO task){
         return service.addTask(mapToEntity(task));
     }
 
@@ -52,7 +53,7 @@ public class TaskController {
     }
 
     @PutMapping("/{id}/edit")
-    public TaskDTO editTaskDescription(@PathVariable Long id, @RequestBody TaskDTO task){
+    public TaskDTO editTaskDescription(@PathVariable Long id, @RequestBody @Valid TaskDTO task){
         return mapToDto(service.editTask(id,  task));
     }
 

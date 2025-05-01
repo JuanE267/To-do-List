@@ -1,7 +1,5 @@
 package com.todo.api.dto;
 
-import com.todo.api.enums.TaskStatus;
-
 public class TaskDTO {
 
     private String title;
