@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 
 
 @Entity
+@Table(name = "Tasks")
 public class Task {
 
     @Id
