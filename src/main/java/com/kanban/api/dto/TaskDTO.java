@@ -1,4 +1,4 @@
-package com.todo.api.dto;
+package com.kanban.api.dto;
 
 public class TaskDTO {
 

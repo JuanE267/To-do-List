@@ -1,23 +1,23 @@
-package com.todo.api.controller;
+package com.kanban.api.controller;
 
-import com.todo.api.dto.TaskDTO;
-import com.todo.api.model.Task;
-import com.todo.api.service.TaskService;
+import com.kanban.api.dto.TaskDTO;
+import com.kanban.api.model.Task;
+import com.kanban.api.service.KanbanService;
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.todo.api.mappers.TaskMapper.mapToDto;
-import static com.todo.api.mappers.TaskMapper.mapToEntity;
+import static com.kanban.api.mappers.TaskMapper.mapToDto;
+import static com.kanban.api.mappers.TaskMapper.mapToEntity;
 
 @RestController
 @RequestMapping("/tasks")
-public class TaskController {
+public class KanbanController {
 
-    private final TaskService service;
+    private final KanbanService service;
 
-    public TaskController(TaskService service){
+    public KanbanController(KanbanService service){
         this.service = service;
     }
 

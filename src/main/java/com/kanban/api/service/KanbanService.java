@@ -1,22 +1,22 @@
-package com.todo.api.service;
+package com.kanban.api.service;
 
-import com.todo.api.dto.TaskDTO;
-import com.todo.api.enums.TaskStatus;
-import com.todo.api.exception.TaskNotFoundException;
-import com.todo.api.model.Task;
-import com.todo.api.repository.TaskRepository;
+import com.kanban.api.dto.TaskDTO;
+import com.kanban.api.enums.TaskStatus;
+import com.kanban.api.exception.TaskNotFoundException;
+import com.kanban.api.model.Task;
+import com.kanban.api.repository.KanbanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class TaskService {
+public class KanbanService {
 
-    private final TaskRepository repository;
+    private final KanbanRepository repository;
 
     @Autowired
-    public TaskService(TaskRepository repository) {
+    public KanbanService(KanbanRepository repository) {
         this.repository = repository;
     }
 

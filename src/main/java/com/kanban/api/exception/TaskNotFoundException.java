@@ -1,4 +1,4 @@
-package com.todo.api.exception;
+package com.kanban.api.exception;
 
 public class TaskNotFoundException extends RuntimeException{
 

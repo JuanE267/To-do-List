@@ -1,10 +1,9 @@
-package com.todo.api.model;
+package com.kanban.api.model;
 
-import com.todo.api.enums.TaskStatus;
+import com.kanban.api.enums.TaskStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 

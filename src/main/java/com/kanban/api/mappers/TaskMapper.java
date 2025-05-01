@@ -1,7 +1,7 @@
-package com.todo.api.mappers;
+package com.kanban.api.mappers;
 
-import com.todo.api.dto.TaskDTO;
-import com.todo.api.model.Task;
+import com.kanban.api.dto.TaskDTO;
+import com.kanban.api.model.Task;
 
 public class TaskMapper {
 
