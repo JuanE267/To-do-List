@@ -12,7 +12,7 @@ import static com.kanban.api.mappers.TaskMapper.mapToDto;
 import static com.kanban.api.mappers.TaskMapper.mapToEntity;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/kanban")
 public class KanbanController {
 
     private final KanbanService service;
@@ -43,13 +43,28 @@ public class KanbanController {
     }
 
     @PatchMapping("/{id}/complete")
-    public TaskDTO completeTask(@PathVariable Long id){
-        return mapToDto(service.completeTask(id));
+    public TaskDTO taskDone(@PathVariable Long id){
+        return mapToDto(service.taskDone(id));
     }
 
     @PatchMapping("/{id}/cancel")
-    public TaskDTO cancelTask(@PathVariable Long id){
-        return mapToDto(service.cancelTask(id));
+    public TaskDTO taskCanceled(@PathVariable Long id){
+        return mapToDto(service.taskCanceled(id));
+    }
+
+    @PatchMapping("/{id}/test")
+    public TaskDTO taskInTest(@PathVariable Long id){
+        return mapToDto(service.taskInTest(id));
+    }
+
+    @PatchMapping("/{id}/todo")
+    public TaskDTO taskToDo(@PathVariable Long id){
+        return mapToDto(service.taskToDo(id));
+    }
+
+    @PatchMapping("/{id}/inProgress")
+    public TaskDTO taskInProgress(@PathVariable Long id){
+        return mapToDto(service.taskInProgress(id));
     }
 
     @PutMapping("/{id}/edit")

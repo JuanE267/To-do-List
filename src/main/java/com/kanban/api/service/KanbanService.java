@@ -46,18 +46,18 @@ public class KanbanService {
         return false;
     }
 
-    //  MARK TASK AS COMPLETE
-    public Task completeTask(Long id){
+    //  MARK TASK AS DONE
+    public Task taskDone(Long id){
         return repository.findById(id)
                 .map(task1 -> {
-                    task1.setStatus(TaskStatus.COMPLETED);
+                    task1.setStatus(TaskStatus.DONE);
                     return repository.save(task1);
                 })
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
 
     //  MARK TASK AS CANCELED
-    public Task cancelTask(Long id){
+    public Task taskCanceled(Long id){
         return repository.findById(id)
                 .map(task1 -> {
                     task1.setStatus(TaskStatus.CANCELED);
@@ -65,6 +65,37 @@ public class KanbanService {
                 })
                 .orElseThrow(() -> new TaskNotFoundException(id));
     }
+
+    //  MARK TASK AS TESTING
+    public Task taskInTest(Long id){
+        return repository.findById(id)
+                .map(task1 -> {
+                    task1.setStatus(TaskStatus.TESTING);
+                    return repository.save(task1);
+                })
+                .orElseThrow(() -> new TaskNotFoundException(id));
+    }
+
+    //  MARK TASK AS TO-DO
+    public Task taskToDo(Long id){
+        return repository.findById(id)
+                .map(task1 -> {
+                    task1.setStatus(TaskStatus.TODO);
+                    return repository.save(task1);
+                })
+                .orElseThrow(() -> new TaskNotFoundException(id));
+    }
+
+    //  MARK TASK AS IN PROGRESS
+    public Task taskInProgress(Long id){
+        return repository.findById(id)
+                .map(task1 -> {
+                    task1.setStatus(TaskStatus.TODO);
+                    return repository.save(task1);
+                })
+                .orElseThrow(() -> new TaskNotFoundException(id));
+    }
+
 
     // EDIT DESCRIPTION
     public Task editTask(Long id, TaskDTO task){
