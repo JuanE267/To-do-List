@@ -5,8 +5,10 @@ import com.todo.api.model.Task;
 import com.todo.api.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+
+import static com.todo.api.mappers.TaskMapper.mapToDto;
+import static com.todo.api.mappers.TaskMapper.mapToEntity;
 
 @RestController
 @RequestMapping("/tasks")
@@ -19,23 +21,20 @@ public class TaskController {
     }
 
     @GetMapping
-    public List<TaskDTO> getAllTasks(){
+    public List<Task> getAllTasks(){
         List<Task> listOfTasks = service.getAllTasks();
-        List<TaskDTO> listOfDtos = new ArrayList<>();
-
-        for(Task t : listOfTasks){
-            listOfDtos.add(mapToDto(t));
-        }
-        return listOfDtos;
+        return listOfTasks;
     }
 
     @GetMapping("/{id}")
-    public TaskDTO getTaskById(@PathVariable Long id){
-        return mapToDto(service.getTask(id));
+    public Task getTaskById(@PathVariable Long id){
+        return service.getTask(id);
     }
 
     @PostMapping
-    public TaskDTO createTask(@RequestBody Task task){  return mapToDto(service.addTask(task)); }
+    public Task createTask(@RequestBody TaskDTO task){
+        return service.addTask(mapToEntity(task));
+    }
 
     @DeleteMapping("/{id}")
     public boolean deleteTask(@PathVariable Long id){
@@ -47,19 +46,14 @@ public class TaskController {
         return mapToDto(service.completeTask(id));
     }
 
+    @PatchMapping("/{id}/cancel")
+    public TaskDTO cancelTask(@PathVariable Long id){
+        return mapToDto(service.cancelTask(id));
+    }
+
     @PutMapping("/{id}/edit")
-    public TaskDTO editTaskDescription(@PathVariable Long id, @RequestBody Task task){
-        return mapToDto(service.editTaskDescription(id,  task));
+    public TaskDTO editTaskDescription(@PathVariable Long id, @RequestBody TaskDTO task){
+        return mapToDto(service.editTask(id,  task));
     }
 
-    private TaskDTO mapToDto(Task task){
-        TaskDTO dto = new TaskDTO();
-
-        dto.setId(task.getId());
-        dto.setTitle(task.getTitle());
-        dto.setDescription(task.getDescription());
-        dto.setStatus(task.getStatus());
-
-        return dto;
-    }
 }

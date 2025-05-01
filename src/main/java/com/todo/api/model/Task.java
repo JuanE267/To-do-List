@@ -1,5 +1,6 @@
 package com.todo.api.model;
 
+import com.todo.api.enums.TaskStatus;
 import jakarta.persistence.*;
 
 
@@ -14,7 +15,9 @@ public class Task {
     @Column(nullable = false)
     private String title;
     private String description;
-    private String status;
+
+    @Enumerated(EnumType.STRING)
+    private TaskStatus status = TaskStatus.PENDING;
 
     public Task() {
     }
@@ -23,14 +26,13 @@ public class Task {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.status = "Pending";
     }
 
-    public String getStatus() {
+    public TaskStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(TaskStatus status) {
         this.status = status;
     }
 
