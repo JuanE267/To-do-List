@@ -36,6 +36,14 @@ public class AdminService {
                 .orElseThrow(() -> new UsernameNotFoundException(username));
     }
 
+    // DELETE TASK
+    public boolean deleteUser(String username) {
+        User user = userRepository.findByUsername(username)
+                .orElseThrow(() -> new UsernameNotFoundException(username));
+        userRepository.delete(user);
+        return true;
+    }
+
     public User changeRole(String username, UserRole role) {
         User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new UsernameNotFoundException(username));

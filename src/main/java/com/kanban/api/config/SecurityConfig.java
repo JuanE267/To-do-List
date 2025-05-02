@@ -1,5 +1,6 @@
 package com.kanban.api.config;
 
+import com.kanban.api.enums.UserRole;
 import com.kanban.api.service.CustomUserDetailsService;
 import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,9 @@ public class SecurityConfig {
                 .csrf(crsf -> crsf.disable())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
-                        .requestMatchers("/tasks/**").hasAnyRole("AUDITOR", "WORKER")
-                        .requestMatchers("/tasks/{id}/edit", "/tasks/{id}/complete", "/tasks/{id}/cancel", "/tasks").hasRole("WORKER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/tasks/**").hasAnyRole(UserRole.ADMIN.name(), UserRole.WORKER.name())
+                        .requestMatchers("/tasks/{id}/edit", "/tasks/{id}/complete", "/tasks/{id}/cancel", "/tasks").hasRole(UserRole.WORKER.name())
+                        .requestMatchers("/admin/**").hasRole(UserRole.ADMIN.name())
                         .anyRequest().authenticated()
                 ).httpBasic(Customizer.withDefaults())
                 .build();

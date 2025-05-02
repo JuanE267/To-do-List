@@ -40,6 +40,13 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/users/{username}")
+    public boolean deleteUser(@PathVariable String username){
+        return adminService.deleteUser(username);
+    }
+
+
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping("/users/{username}/role")
     public User changeRole(@PathVariable String username, @RequestBody UserRole role){
         return adminService.changeRole(username, role);
